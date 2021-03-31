@@ -45,7 +45,7 @@ const App: React.FC = () => {
             window.location.reload();
           })
     );
-  }, []);
+  }, [dispatch]);
 
   function sortBy(name: string, tickets: Ticket[]) {
     if (name === "Оптимальный") {
