@@ -26,7 +26,7 @@ const App: React.FC = () => {
     })
   );
 
-  const getTickets = React.useCallback(() => {
+  React.useEffect(() => {
     axios.get("https://front-test.beta.aviasales.ru/search").then(
       ({ data }) =>
         dispatch(setSearchId(data.searchId)) &&
@@ -45,14 +45,8 @@ const App: React.FC = () => {
             window.location.reload();
           })
     );
-  }, [dispatch]);
+  }, []);
 
-  const getFlights = () => {
-    React.useEffect(() => {
-      getTickets();
-    }, []);
-  };
-  getFlights();
   function sortBy(name: string, tickets: Ticket[]) {
     if (name === "Оптимальный") {
       return tickets.sort((a: Ticket, b: Ticket) =>
