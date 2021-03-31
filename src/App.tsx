@@ -47,10 +47,12 @@ const App: React.FC = () => {
     );
   }, [dispatch]);
 
-  React.useEffect(() => {
-    getTickets();
-  }, []);
-
+  const getFlights = () => {
+    React.useEffect(() => {
+      getTickets();
+    }, []);
+  };
+  getFlights();
   function sortBy(name: string, tickets: Ticket[]) {
     if (name === "Оптимальный") {
       return tickets.sort((a: Ticket, b: Ticket) =>
