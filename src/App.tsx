@@ -27,6 +27,7 @@ const App: React.FC = () => {
   );
 
   React.useEffect(() => {
+    const dispatch = useDispatch();
     function getTickets() {
       axios.get("https://front-test.beta.aviasales.ru/search").then(
         ({ data }) =>
