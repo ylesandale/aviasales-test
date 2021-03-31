@@ -26,28 +26,27 @@ const App: React.FC = () => {
     })
   );
 
-  function getTickets() {
-    axios.get("https://front-test.beta.aviasales.ru/search").then(
-      ({ data }) =>
-        dispatch(setSearchId(data.searchId)) &&
-        axios
-          .get(
-            "https://front-test.beta.aviasales.ru/tickets?searchId=" +
-              data.searchId
-          )
-          .then((tickets: { data: any }) =>
-            dispatch(setTickets(tickets.data.tickets))
-          )
-          .catch(() => {
-            alert(
-              "Не удалось загрузить авиабилеты с сервера, после клика ОК произойдёт автоматическая перезагрузка страницы"
-            );
-            window.location.reload();
-          })
-    );
-  }
-
   React.useEffect(() => {
+    function getTickets() {
+      axios.get("https://front-test.beta.aviasales.ru/search").then(
+        ({ data }) =>
+          dispatch(setSearchId(data.searchId)) &&
+          axios
+            .get(
+              "https://front-test.beta.aviasales.ru/tickets?searchId=" +
+                data.searchId
+            )
+            .then((tickets: { data: any }) =>
+              dispatch(setTickets(tickets.data.tickets))
+            )
+            .catch(() => {
+              alert(
+                "Не удалось загрузить авиабилеты с сервера, после клика ОК произойдёт автоматическая перезагрузка страницы"
+              );
+              window.location.reload();
+            })
+      );
+    }
     getTickets();
   }, []);
 
